@@ -1,2 +1,0 @@
-# Jorge-web
-Pagina web
