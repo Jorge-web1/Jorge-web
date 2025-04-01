@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Ecuaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #98c2e4; /* Fondo de color pastel suave */
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #4781bb; /* Azul pastel suave */
+        }
+        .container {
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .input-box {
+            margin-bottom: 15px;
+        }
+        input[type="number"] {
+            padding: 8px;
+            font-size: 16px;
+            width: 120px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #B3C7D6; /* Bordes de color gris suave */
+            background-color: #FFFFFF; /* Fondo blanco para los inputs */
+        }
+        label {
+            font-size: 18px;
+            color: #4B6D8C; /* Gris azulado para las etiquetas */
+        }
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+        .checkbox-group label {
+            margin-right: 20px;
+            font-size: 16px;
+            color: #4B6D8C; /* Gris azulado para las etiquetas de los checkboxes */
+        }
+        button {
+            background-color: #0080ff; /* Botón de color azul pastel suave */
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #7D9BB9; /* Azul un poco más fuerte para el hover */
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .image-container {
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .clear-btn {
+            background-color: #ff4c4c; /* Botón rojo para borrar */
+            margin-left: 10px;
+        }
+        .clear-btn:hover {
+            background-color: #ff7070; /* Rojo más suave para el hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Ecuaciones</h1>
+        
+        <div class="input-box">
+            <label for="x">Valor de X: </label>
+            <input type="number" id="x" name="x" required>
+        </div>
+        <div class="input-box">
+            <label for="y">Valor de Y: </label>
+            <input type="number" id="y" name="y" required>
+        </div>
+
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="eq1"> 3x² + 2y</label>
+            <label><input type="checkbox" id="eq2"> x³ + 3y²</label>
+        </div>
+
+        <button onclick="calcular()">Aceptar</button>
+        <button class="clear-btn" onclick="borrar()">Borrar</button>
+
+        <div id="result" class="result"></div>
+
+        <div class="image-container">
+            <img src="5.jpg" alt="Imagen decorativa">
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+            let resultText = '';
+            
+            // Verificar si se selecciona la primera ecuación
+            if (document.getElementById('eq1').checked) {
+                const eq1 = 3 * Math.pow(x, 2) + 2 * y;
+                resultText += `Ecuación 1 (3x² + 2y): ${eq1}<br>`;
+            }
+
+            // Verificar si se selecciona la segunda ecuación
+            if (document.getElementById('eq2').checked) {
+                const eq2 = Math.pow(x, 3) + 3 * Math.pow(y, 2);
+                resultText += `Ecuación 2 (x³ + 3y²): ${eq2}<br>`;
+            }
+
+            // Mostrar el resultado
+            if (resultText) {
+                document.getElementById('result').innerHTML = `El resultado de la(s) ecuación(es) es:<br>${resultText}`;
+            } else {
+                document.getElementById('result').innerHTML = 'Por favor, selecciona al menos una ecuación.';
+            }
+        }
+
+        function borrar() {
+            document.getElementById('x').value = '';
+            document.getElementById('y').value = '';
+            document.getElementById('eq1').checked = false;
+            document.getElementById('eq2').checked = false;
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+
+</body>
+</html>
